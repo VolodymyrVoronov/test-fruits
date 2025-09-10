@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Loader2Icon } from "lucide-react";
+import React, { useEffect, useState } from "react";
 
 interface Star {
   x: number;
@@ -7,7 +8,7 @@ interface Star {
   size: number;
 }
 
-const ConstellationLoader: React.FC = () => {
+const Loader: React.FC = () => {
   const [stars, setStars] = useState<Star[]>([]);
 
   useEffect(() => {
@@ -61,10 +62,12 @@ const ConstellationLoader: React.FC = () => {
       />
 
       <span className="text-primary dark:text-white text-2xl py-4 px-6 bg-white dark:bg-primary rounded-full z-10 border-2">
-        <span className="animate-pulse">Loading...</span>
+        <span className="flex flex-row items-center justify-center gap-2">
+          Loading <Loader2Icon className="animate-spin" />
+        </span>
       </span>
     </div>
   );
 };
 
-export default ConstellationLoader;
+export default Loader;

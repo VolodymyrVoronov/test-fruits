@@ -1,16 +1,16 @@
 import { useGetAllFruitsQuery } from "./services/fruitApi";
 
-import ConstellationLoader from "./components/ConstellationLoader";
+import Loader from "./components/Loader";
 import ErrorBlock from "./components/ErrorBlock";
 import { Button } from "./components/ui/button";
 
 const App = () => {
-  const { data, error, isLoading } = useGetAllFruitsQuery();
+  const { data, error, isLoading, ...rest } = useGetAllFruitsQuery();
 
-  if (isLoading) return <ConstellationLoader />;
+  if (isLoading) return <Loader />;
   if (error) return <ErrorBlock />;
 
-  console.log(data);
+  console.log(data, rest);
 
   return (
     <div className="max-w-xl mx-auto">
