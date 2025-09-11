@@ -23,7 +23,7 @@ const useProcessFruits = (fruits: IFruit[]) => {
   const filteredFruits = fruits.filter((fruit) => {
     if (letter === "") return true;
 
-    return fruit.name[0] === letter;
+    return fruit.name.at(0)?.toLowerCase() === letter.toLowerCase();
   });
 
   return { header, processedFruits: filteredFruits };

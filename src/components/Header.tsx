@@ -13,7 +13,7 @@ const Header = ({
   onLetterClick,
 }: IHeaderProps) => {
   return (
-    <header>
+    <header className="flex flex-col gap-2">
       <h1 className="text-3xl font-bold text-primary dark:text-white text-center">
         Fruits
       </h1>
