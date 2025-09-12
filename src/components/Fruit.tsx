@@ -11,7 +11,14 @@ import {
 
 import type { IFruit } from "@/types";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import CardWikiLink from "./CardWikiLink";
 
 interface IFruitProps {
   fruit: IFruit;
@@ -23,6 +30,7 @@ const Fruit = ({ fruit }: IFruitProps) => {
     family,
     genus,
     order,
+    wikiLink,
     nutritions: { carbohydrates, protein, fat, calories, sugar },
   } = fruit;
 
@@ -81,6 +89,12 @@ const Fruit = ({ fruit }: IFruitProps) => {
           </span>
         </div>
       </CardContent>
+
+      {wikiLink && (
+        <CardFooter>
+          <CardWikiLink name={name} wikiLink={wikiLink} />
+        </CardFooter>
+      )}
     </Card>
   );
 };

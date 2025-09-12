@@ -4,6 +4,7 @@ export interface IFruit {
   family: string;
   genus: string;
   order: string;
+  wikiLink?: string;
   nutritions: {
     carbohydrates: number;
     protein: number;
