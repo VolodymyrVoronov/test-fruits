@@ -1,6 +1,9 @@
 import useProcessFruits from "@/hooks/useProcessFruits";
 import type { IFruit } from "@/types";
 
+import Fruit from "./Fruit";
+import Fruits from "./Fruits";
+
 interface IMainProps {
   fruits: IFruit[];
 }
@@ -8,9 +11,17 @@ interface IMainProps {
 const Main = ({ fruits }: IMainProps) => {
   const { header, processedFruits } = useProcessFruits(fruits);
 
-  console.log("processedFruits", processedFruits);
+  return (
+    <div className=" flex flex-col gap-4">
+      {header}
 
-  return <div>{header}</div>;
+      <Fruits>
+        {processedFruits.map((processedFruit) => (
+          <Fruit key={processedFruit.id} fruit={processedFruit} />
+        ))}
+      </Fruits>
+    </div>
+  );
 };
 
 export default Main;
