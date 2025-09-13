@@ -19,5 +19,31 @@ export default defineConfig({
       },
     },
   },
+  optimizeDeps: {
+    include: [
+      "react",
+      "react-dom",
+      "framer-motion",
+      "@reduxjs/toolkit",
+      "react-redux",
+      "lucide-react",
+    ],
+  },
+  build: {
+    target: "esnext",
+    minify: "esbuild",
+    sourcemap: false,
+    chunkSizeWarningLimit: 600,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ["react", "react-dom"],
+          redux: ["@reduxjs/toolkit", "react-redux"],
+          framer: ["framer-motion"],
+          lucide: ["lucide-react"],
+        },
+      },
+    },
+  },
 });
 
