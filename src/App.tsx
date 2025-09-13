@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { toast } from "sonner";
 
 import { useGetAllFruitsQuery } from "./services/fruitApi";
 
@@ -8,7 +9,6 @@ import Loader from "./components/Loader";
 import Main from "./components/Main";
 import NoContent from "./components/NoContent";
 import { Toaster } from "./components/ui/sonner";
-import { toast } from "sonner";
 
 const App = () => {
   const { data, error, isLoading } = useGetAllFruitsQuery();
