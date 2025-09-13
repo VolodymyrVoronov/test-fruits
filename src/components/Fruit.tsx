@@ -38,9 +38,9 @@ const Fruit = ({ fruit, index }: IFruitProps) => {
   return (
     <Card className="rounded-2xl shadow-md">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold flex items-center justify-between">
+        <CardTitle className="text-xl font-bold flex items-center justify-between">
           <span>{name}</span>
-          <span className=" text-sm font-semibold size-6 flex items-center justify-center bg-primary rounded-full text-white">
+          <span className=" text-sm font-medium size-6 flex items-center justify-center bg-primary rounded-full text-white">
             {index + 1}
           </span>
         </CardTitle>
