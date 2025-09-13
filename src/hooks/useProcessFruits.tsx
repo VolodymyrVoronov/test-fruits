@@ -12,11 +12,13 @@ const useProcessFruits = (fruits: IFruit[]) => {
 
   const onLetterClick = (letter: string) => setLetter(letter);
 
-  const filteredFruits = fruits.filter((fruit) => {
-    if (letter === "") return true;
+  const filteredFruits = fruits
+    .filter((fruit) => {
+      if (letter === "") return true;
 
-    return fruit.name.at(0)?.toLowerCase() === letter.toLowerCase();
-  });
+      return fruit.name.at(0)?.toLowerCase() === letter.toLowerCase();
+    })
+    .sort((a, b) => a.name.localeCompare(b.name));
 
   const fruitsAmount = filteredFruits.length;
 

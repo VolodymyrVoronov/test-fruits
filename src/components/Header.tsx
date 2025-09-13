@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useMemo } from "react";
 
 import useArrowNavigation from "../hooks/useArrowNavigation";
@@ -45,34 +46,50 @@ const Header = ({
         onKeyDown={handleKeyDown}
         className="grid grid-cols-[repeat(auto-fit,minmax(2rem,1fr))] gap-2 mt-2"
       >
-        {allLetters.map((letter, index) => (
-          <li key={letter || "all"}>
-            <Button
-              ref={registerButton(index)}
-              size="sm"
-              variant={letter === activeLetter ? "default" : "secondary"}
-              onClick={() => onLetterClick(letter)}
-              className="w-full relative"
-              aria-selected={letter === activeLetter}
-              aria-label={
-                letter === activeLetter
-                  ? (letter || "All") + ` ${fruitsAmount} found`
-                  : letter
-              }
-              aria-current={letter === activeLetter}
-            >
-              {letter || "All"}
+        {allLetters.map((letter, index) => {
+          const isActive = letter === activeLetter;
 
-              {letter === activeLetter ? (
-                <span className="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full px-1.5">
-                  {fruitsAmount}
-                </span>
-              ) : (
-                ""
-              )}
-            </Button>
-          </li>
-        ))}
+          return (
+            <li key={letter || "all"}>
+              <Button
+                ref={registerButton(index)}
+                size="sm"
+                variant={isActive ? "default" : "secondary"}
+                onClick={() => onLetterClick(letter)}
+                className="w-full relative"
+                aria-selected={isActive}
+                aria-label={
+                  isActive
+                    ? (letter || "All") + ` ${fruitsAmount} found`
+                    : letter
+                }
+                aria-current={isActive}
+              >
+                {letter || "All"}
+
+                <AnimatePresence mode="wait">
+                  {isActive ? (
+                    <motion.span
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{
+                        opacity: 1,
+                        scale: [0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.4, 1.3, 1.2, 1],
+                      }}
+                      exit={{ opacity: 0, scale: 0 }}
+                      transition={{
+                        duration: 0.2,
+                        ease: "easeInOut",
+                      }}
+                      className="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full px-1.5 shadow-2xl"
+                    >
+                      {fruitsAmount}
+                    </motion.span>
+                  ) : null}
+                </AnimatePresence>
+              </Button>
+            </li>
+          );
+        })}
       </ul>
     </header>
   );
