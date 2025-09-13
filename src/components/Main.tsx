@@ -1,4 +1,4 @@
-import { motion, useScroll, useSpring } from "framer-motion";
+import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 
 import useProcessFruits from "@/hooks/useProcessFruits";
 import type { IFruit } from "@/types";
@@ -35,13 +35,19 @@ const Main = ({ fruits }: IMainProps) => {
         </div>
 
         <Fruits>
-          {processedFruits.map((processedFruit, index) => (
-            <Fruit
-              key={processedFruit.id}
-              fruit={processedFruit}
-              index={index}
-            />
-          ))}
+          <AnimatePresence initial={false} mode="popLayout">
+            {processedFruits.map((processedFruit, index) => (
+              <motion.li
+                key={processedFruit.id}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+              >
+                <Fruit fruit={processedFruit} index={index} />
+              </motion.li>
+            ))}
+          </AnimatePresence>
         </Fruits>
       </div>
     </>

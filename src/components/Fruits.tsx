@@ -6,9 +6,9 @@ interface IFruitsProps {
 
 const Fruits = ({ children }: IFruitsProps) => {
   return (
-    <div className="grid grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] gap-4">
+    <ul className="grid grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] gap-4">
       {children}
-    </div>
+    </ul>
   );
 };
 
