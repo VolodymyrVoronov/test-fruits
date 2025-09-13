@@ -52,11 +52,21 @@ const Header = ({
               size="sm"
               variant={letter === activeLetter ? "default" : "secondary"}
               onClick={() => onLetterClick(letter)}
-              className="w-full"
+              className="w-full relative"
+              aria-selected={letter === activeLetter}
+              aria-label={
+                letter === activeLetter
+                  ? (letter || "All") + ` ${fruitsAmount} found`
+                  : letter
+              }
+              aria-current={letter === activeLetter}
             >
-              {letter || "All"}{" "}
+              {letter || "All"}
+
               {letter === activeLetter ? (
-                <span className="text-xs">({fruitsAmount})</span>
+                <span className="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full px-1.5">
+                  {fruitsAmount}
+                </span>
               ) : (
                 ""
               )}
