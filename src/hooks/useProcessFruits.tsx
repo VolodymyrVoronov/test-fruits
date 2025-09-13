@@ -18,11 +18,13 @@ const useProcessFruits = (fruits: IFruit[]) => {
     return fruit.name.at(0)?.toLowerCase() === letter.toLowerCase();
   });
 
+  const fruitsAmount = filteredFruits.length;
+
   const header = (
     <Header
       firstLetters={firstLetters}
       activeLetter={letter}
-      fruitsAmount={filteredFruits.length}
+      fruitsAmount={fruitsAmount}
       onLetterClick={onLetterClick}
     />
   );
