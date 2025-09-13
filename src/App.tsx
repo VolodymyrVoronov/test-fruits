@@ -19,7 +19,8 @@ const App = () => {
         <div className="flex items-center gap-2">
           <span>{data?.length} fruits have been loaded</span>
           <span className="font-bold">🍓</span>
-        </div>
+        </div>,
+        { closeButton: true }
       );
     }
   }, [data]);
