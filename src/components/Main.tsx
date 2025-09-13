@@ -29,7 +29,10 @@ const Main = ({ fruits }: IMainProps) => {
       />
 
       <div className=" flex flex-col gap-4">
-        {header}
+        <div className="sticky top-0">
+          <div className="relative z-10">{header}</div>
+          <div className="absolute inset-0 -left-[0.5rem] h-[calc(100%+1rem)] w-[calc(100%+1rem)] bg-[#f8f2fa]  origin-left z-0" />
+        </div>
 
         <Fruits>
           {processedFruits.map((processedFruit) => (
