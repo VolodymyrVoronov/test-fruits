@@ -35,8 +35,12 @@ const Main = ({ fruits }: IMainProps) => {
         </div>
 
         <Fruits>
-          {processedFruits.map((processedFruit) => (
-            <Fruit key={processedFruit.id} fruit={processedFruit} />
+          {processedFruits.map((processedFruit, index) => (
+            <Fruit
+              key={processedFruit.id}
+              fruit={processedFruit}
+              index={index}
+            />
           ))}
         </Fruits>
       </div>

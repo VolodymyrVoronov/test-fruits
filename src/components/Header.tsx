@@ -7,6 +7,7 @@ import { Button } from "./ui/button";
 interface IHeaderProps {
   firstLetters: string[];
   activeLetter: string;
+  fruitsAmount: number;
 
   onLetterClick: (letter: string) => void;
 }
@@ -14,6 +15,8 @@ interface IHeaderProps {
 const Header = ({
   firstLetters,
   activeLetter,
+  fruitsAmount,
+
   onLetterClick,
 }: IHeaderProps) => {
   const allLetters = useMemo(() => ["", ...firstLetters], [firstLetters]);
@@ -51,7 +54,12 @@ const Header = ({
               onClick={() => onLetterClick(letter)}
               className="w-full"
             >
-              {letter || "All"}
+              {letter || "All"}{" "}
+              {letter === activeLetter ? (
+                <span className="text-xs">({fruitsAmount})</span>
+              ) : (
+                ""
+              )}
             </Button>
           </li>
         ))}

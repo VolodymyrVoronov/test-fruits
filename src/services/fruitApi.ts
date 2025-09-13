@@ -19,7 +19,9 @@ export const fruitApi = createApi({
                 name
               )}&format=json&origin=*`
             );
+
             const data = await res.json();
+
             if (data.query.search.length > 0) {
               const pageTitle = data.query.search[0].title;
               return `https://en.wikipedia.org/wiki/${encodeURIComponent(

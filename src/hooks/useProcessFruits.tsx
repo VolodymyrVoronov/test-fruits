@@ -12,19 +12,20 @@ const useProcessFruits = (fruits: IFruit[]) => {
 
   const onLetterClick = (letter: string) => setLetter(letter);
 
-  const header = (
-    <Header
-      firstLetters={firstLetters}
-      activeLetter={letter}
-      onLetterClick={onLetterClick}
-    />
-  );
-
   const filteredFruits = fruits.filter((fruit) => {
     if (letter === "") return true;
 
     return fruit.name.at(0)?.toLowerCase() === letter.toLowerCase();
   });
+
+  const header = (
+    <Header
+      firstLetters={firstLetters}
+      activeLetter={letter}
+      fruitsAmount={filteredFruits.length}
+      onLetterClick={onLetterClick}
+    />
+  );
 
   return { header, processedFruits: filteredFruits };
 };
