@@ -1,4 +1,4 @@
-import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 import useProcessFruits from "@/hooks/useProcessFruits";
 import type { IFruit } from "@/types";
@@ -11,46 +11,31 @@ interface IMainProps {
 }
 
 const Main = ({ fruits }: IMainProps) => {
-  const { scrollYProgress } = useScroll();
-
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 200,
-    damping: 30,
-    mass: 1,
-  });
-
   const { header, processedFruits } = useProcessFruits(fruits);
 
   return (
-    <>
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-primary origin-left z-[9999]"
-        style={{ scaleX }}
-      />
-
-      <div className=" flex flex-col gap-4">
-        <div className="sticky top-1">
-          <div className="relative z-10">{header}</div>
-          <div className="absolute inset-0 -left-[0.5rem] -top-1 h-[calc(100%+1rem)] w-[calc(100%+1rem)] bg-[#f8f2fa]  origin-left z-0" />
-        </div>
-
-        <Fruits>
-          <AnimatePresence initial={false} mode="popLayout">
-            {processedFruits.map((processedFruit, index) => (
-              <motion.li
-                key={processedFruit.id}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.25 }}
-              >
-                <Fruit fruit={processedFruit} index={index} />
-              </motion.li>
-            ))}
-          </AnimatePresence>
-        </Fruits>
+    <div className=" flex flex-col gap-4">
+      <div className="sticky top-1">
+        <div className="relative z-10">{header}</div>
+        <div className="absolute inset-0 -left-[0.5rem] -top-1 h-[calc(100%+1rem)] w-[calc(100%+1rem)] bg-[#f8f2fa]  origin-left z-0" />
       </div>
-    </>
+
+      <Fruits>
+        <AnimatePresence initial={false} mode="popLayout">
+          {processedFruits.map((processedFruit, index) => (
+            <motion.li
+              key={processedFruit.id}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+            >
+              <Fruit fruit={processedFruit} index={index} />
+            </motion.li>
+          ))}
+        </AnimatePresence>
+      </Fruits>
+    </div>
   );
 };
 
