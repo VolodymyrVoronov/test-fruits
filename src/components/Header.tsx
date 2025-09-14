@@ -48,7 +48,7 @@ const Header = ({
         Fruits
       </h1>
 
-      <div className="grid grid-cols-[1fr_auto] items-center gap-2">
+      <div className="grid  grid-cols-1 lg:grid-cols-[1fr_auto] items-center gap-2">
         <ul
           onKeyDown={handleKeyDown}
           className="grid grid-cols-[repeat(auto-fit,minmax(2rem,1fr))] gap-2"

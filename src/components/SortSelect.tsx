@@ -50,7 +50,7 @@ const SortSelect = ({
       }}
       disabled={fruitsAmount <= 1}
     >
-      <SelectTrigger className="w-[200px]">
+      <SelectTrigger className="w-full lg:w-[200px]">
         <SelectValue placeholder="Sort by..." />
       </SelectTrigger>
 
