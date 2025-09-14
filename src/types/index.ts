@@ -13,3 +13,10 @@ export interface IFruit {
     sugar: number;
   };
 }
+
+export type NutritionKey = keyof IFruit["nutritions"];
+
+export interface ISortedBy {
+  key: keyof IFruit["nutritions"];
+  order: "asc" | "desc";
+}
