@@ -37,11 +37,12 @@ const SortSelect = ({
   return (
     <Select
       value={sortedBy ? `${sortedBy.key}-${sortedBy.order}` : "reset"}
-      onValueChange={(v) => {
-        if (v === "reset") {
+      onValueChange={(value) => {
+        if (value === "reset") {
           onSortClick(null);
         } else {
-          const [key, order] = v.split("-");
+          const [key, order] = value.split("-");
+
           onSortClick({
             key: key as ISortedBy["key"],
             order: order as ISortedBy["order"],
