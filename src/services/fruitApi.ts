@@ -17,7 +17,7 @@ export const fruitApi = createApi({
       query: () =>
         import.meta.env.DEV
           ? "fruit/all" // dev proxy route
-          : "all", // production full URL
+          : "/all", // production full URL
       // Transform the response to include Wikipedia links
       async transformResponse(rawFruits: IFruit[]) {
         const fetchWikiLink = async (name: string) => {
