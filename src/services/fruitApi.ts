@@ -3,13 +3,21 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { IFruit } from "../types";
 
 const WIKI_API_URL = "https://en.wikipedia.org/w/api.php";
+const API_URL = "https://www.fruityvice.com/api/fruit";
 
 export const fruitApi = createApi({
   reducerPath: "fruitApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "/api/" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: import.meta.env.DEV
+      ? "/api/" // optional: dev proxy or local server
+      : API_URL, // production full URL
+  }),
   endpoints: (builder) => ({
     getAllFruits: builder.query<IFruit[], void>({
-      query: () => "fruit/all",
+      query: () =>
+        import.meta.env.DEV
+          ? "fruit/all" // dev proxy route
+          : "all", // production full URL
       // Transform the response to include Wikipedia links
       async transformResponse(rawFruits: IFruit[]) {
         const fetchWikiLink = async (name: string) => {
