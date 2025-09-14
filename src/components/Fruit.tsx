@@ -47,7 +47,7 @@ const Fruit = ({ fruit, selectedSortedBy, index }: IFruitProps) => {
       <CardHeader>
         <CardTitle className="text-xl font-bold flex items-center justify-between gap-1">
           <span>{name}</span>
-          <span className=" text-sm font-medium size-6 flex items-center justify-center bg-primary rounded-full text-white">
+          <span className="shadow-2xl text-sm font-medium size-6 flex items-center justify-center bg-primary rounded-full text-white">
             {index + 1}
           </span>
         </CardTitle>
