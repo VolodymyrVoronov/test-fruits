@@ -11,7 +11,8 @@ interface IMainProps {
 }
 
 const Main = ({ fruits }: IMainProps) => {
-  const { header, processedFruits } = useProcessFruits(fruits);
+  const { header, processedFruits, selectedSortedBy } =
+    useProcessFruits(fruits);
 
   return (
     <div className=" flex flex-col gap-4">
@@ -30,7 +31,11 @@ const Main = ({ fruits }: IMainProps) => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
             >
-              <Fruit fruit={processedFruit} index={index} />
+              <Fruit
+                fruit={processedFruit}
+                selectedSortedBy={selectedSortedBy}
+                index={index}
+              />
             </motion.li>
           ))}
         </AnimatePresence>

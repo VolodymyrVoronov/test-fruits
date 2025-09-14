@@ -51,7 +51,11 @@ const useProcessFruits = (fruits: IFruit[]) => {
     />
   );
 
-  return { header, processedFruits: filteredFruits };
+  return {
+    header,
+    processedFruits: filteredFruits,
+    selectedSortedBy: sortedBy,
+  };
 };
 
 export default useProcessFruits;

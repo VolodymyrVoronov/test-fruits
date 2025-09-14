@@ -9,7 +9,7 @@ import {
   Wheat,
 } from "lucide-react";
 
-import type { IFruit } from "@/types";
+import type { IFruit, ISortedBy } from "@/types";
 
 import {
   Card,
@@ -22,18 +22,25 @@ import CardWikiLink from "./CardWikiLink";
 
 interface IFruitProps {
   fruit: IFruit;
+  selectedSortedBy: ISortedBy | null;
   index: number;
 }
 
-const Fruit = ({ fruit, index }: IFruitProps) => {
-  const {
-    name,
-    family,
-    genus,
-    order,
-    wikiLink,
-    nutritions: { carbohydrates, protein, fat, calories, sugar },
-  } = fruit;
+const nutrientConfig = [
+  {
+    key: "carbohydrates",
+    label: "Carbohydrates",
+    icon: Wheat,
+    color: "text-yellow-600",
+  },
+  { key: "protein", label: "Protein", icon: Drumstick, color: "text-rose-600" },
+  { key: "fat", label: "Fat", icon: Droplet, color: "text-blue-400" },
+  { key: "calories", label: "Calories", icon: Flame, color: "text-orange-500" },
+  { key: "sugar", label: "Sugar", icon: Candy, color: "text-pink-500" },
+];
+
+const Fruit = ({ fruit, selectedSortedBy, index }: IFruitProps) => {
+  const { name, family, genus, order, wikiLink, nutritions } = fruit;
 
   return (
     <Card className="rounded-2xl shadow-md">
@@ -68,40 +75,24 @@ const Fruit = ({ fruit, index }: IFruitProps) => {
           </span>
         </div>
 
-        <div className="flex items-center gap-2">
-          <Wheat className="w-5 h-5 text-yellow-600" />
-          <span>
-            Carbohydrates: <span className="font-bold">{carbohydrates}</span>
-          </span>
-        </div>
+        {nutrientConfig.map(({ key, label, icon: Icon, color }) => {
+          const value = nutritions[key as keyof typeof nutritions];
+          const isSelected = selectedSortedBy?.key === key;
 
-        <div className="flex items-center gap-2">
-          <Drumstick className="w-5 h-5 text-rose-600" />
-          <span>
-            Protein: <span className="font-bold">{protein}</span>
-          </span>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <Droplet className="w-5 h-5 text-blue-400" />
-          <span>
-            Fat: <span className="font-bold">{fat}</span>
-          </span>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <Flame className="w-5 h-5 text-orange-500" />
-          <span>
-            Calories: <span className="font-bold">{calories}</span>
-          </span>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <Candy className="w-5 h-5 text-pink-500" />
-          <span>
-            Sugar: <span className="font-bold">{sugar}</span>
-          </span>
-        </div>
+          return (
+            <div
+              key={key}
+              className={`flex items-center gap-2 transition-colors ${
+                isSelected ? "bg-primary/20 dark:bg-primary rounded-lg" : ""
+              }`}
+            >
+              <Icon className={`w-5 h-5 ${color}`} />
+              <span>
+                {label}: <span className="font-bold">{value}</span>
+              </span>
+            </div>
+          );
+        })}
       </CardContent>
 
       {wikiLink && (
